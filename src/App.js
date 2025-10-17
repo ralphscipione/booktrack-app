@@ -12,12 +12,21 @@ function App() {
   const [isFormVisible, setIsFormVisible] = useState(false);
 
   useEffect(() => {
-    // Fetch books from an API or local storage
-    fetch('http://localhost:3001/books')
-      .then(response => response.json())
-      .then(data => setBooks(data))
-      .catch(error => console.error('Error fetching data:', error));
+    if (process.env.NODE_ENV === 'development') {
+      // Fetch books from an API or local storage
+      fetch('http://localhost:3001/books')
+        .then(response => response.json())
+        .then(data => setBooks(data))
+        .catch(error => console.error('Error fetching data:', error));
+    } else {
+      // Use static data for production builds
+      setBooks(initialBooks);
+    }
   }, []);
+  // ... handleAddBook and handleStatusUpdate will NOT work with static data
+  // For this lab, we accept that Add/Update will be non-functional on deployed version
+  // A full backend would be needed for those features in production.
+  // ... rest of App.js
 
   //write the logic to create a filteredBooks constant. 
   const filteredBooks = searchTerm.trim() === ''
@@ -48,13 +57,13 @@ function App() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body:JSON.stringify({status:newStatus})
-      
+      body: JSON.stringify({ status: newStatus })
+
     })
       .then(response => response.json())
       .then(updatedBook => {
-        setBooks(prevBooks => 
-          prevBooks.map(book => 
+        setBooks(prevBooks =>
+          prevBooks.map(book =>
             book.id === bookId ? updatedBook : book
           )
         );
@@ -73,11 +82,11 @@ function App() {
           onStatusUpdate={onStatusUpdate}
         />
         {isFormVisible && (
-        <AddBookForm
-          onAddBook={handleAddBook}
-          onCloseForm={() => setIsFormVisible(false)}
-        />
-      )}
+          <AddBookForm
+            onAddBook={handleAddBook}
+            onCloseForm={() => setIsFormVisible(false)}
+          />
+        )}
       </main>
     </div>
   );
