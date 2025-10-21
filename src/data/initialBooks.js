@@ -100,3 +100,6 @@ export const initialBooks = [
     totalPages: 412,
   },
 ];
+
+export default initialBooks;
+

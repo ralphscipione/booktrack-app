@@ -5,6 +5,7 @@ import './components.css';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import AddBookForm from './components/AddBookForm';
+import initialBooks from './data/initialBooks';
 
 function App() {
   const [books, setBooks] = useState([]);
