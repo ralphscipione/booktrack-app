@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProgressBar from './ProgressBar';
 import { STATUSES } from '../data/constants'; // Added
+import '../components.css';
+
 function BookCard({ book, onStatusUpdate }) { // Added prop
   return (
     <div className="book-card">
