@@ -149,6 +149,16 @@
       "genre": "Unknown",
       "status": "wantToRead",
       "progress": 0
+    },
+    {
+      "id": "1761588097815",
+      "title": "One Banana",
+      "author": "Banana Splits",
+      "totalPages": 99,
+      "year": 2025,
+      "genre": "Unknown",
+      "status": "wantToRead",
+      "progress": 0
     }
   ]
 }
